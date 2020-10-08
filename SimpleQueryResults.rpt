@@ -1,0 +1,15 @@
+﻿PeopleID    FirstName            LastName             JoinDate   ZipCode     Age
+----------- -------------------- -------------------- ---------- ----------- -----------
+1           Dakota               Kirton               2020-10-07 48312       26
+2           Eugene               Wagner               2020-10-07 48312       65
+3           Barabara             Bell                 2020-10-07 48312       53
+4           Richard              Andreas              2020-10-07 48312       50
+5           Lester               Joyner               2020-10-07 48312       58
+6           Danielle             Bell                 2020-10-07 48312       15
+7           Jack                 Wagner               2020-10-07 48312       11
+8           Michael              Joyner               2020-10-07 48312       10
+
+(8 rows affected)
+
+
+Completion time: 2020-10-08T16:11:26.0005667-05:00
