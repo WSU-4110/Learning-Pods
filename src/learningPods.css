@@ -46,7 +46,7 @@
   font-feature-settings: 'liga';
 }
 
-.material-icons.md-48 { font-size: 48px; } 
+.material-icons.md-48 { font-size: 36px; } 
 
 /*======================== END NAV FONT-ICONS ========================*/ 
 /*====================================================================*/ 
@@ -73,9 +73,9 @@ header {
   position: relative;
   padding-left: 0px;
   align-content: center;
-  height: 68px;
+  height: 50px;
   width: 100;
-  line-height: 80px;
+  line-height: 96px;
   background: #0b2b43;
   box-shadow: 0px 2px #71EAF580;
 }
@@ -106,7 +106,7 @@ header {
 
 .navbar li a.active {
   color: #FFA94C;
-  border-bottom: 10px solid #FFA94C;
+  border-bottom: 5px solid #FFA94C;
   border-width: auto;
 }
 /*============================= END NAV BAR ==========================*/ 
