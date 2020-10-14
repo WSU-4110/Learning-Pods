@@ -27,3 +27,27 @@ Create Table Child (
 	CONSTRAINT FK_ParentID_Child FOREIGN KEY (ParentID)
     REFERENCES People(PeopleID) ON UPDATE  NO ACTION  ON DELETE  NO ACTION
 );
+
+CREATE TABLE HostHome (
+	HomeID int NOT NULL IDENTITY(1,1),
+	ParentID int,
+	Street varchar(25),
+	AptNumber varchar(25),
+	City varchar(25),
+	StateAbr varchar(2),
+	CONSTRAINT FK_ParentID_Home FOREIGN KEY (ParentID)
+    REFERENCES People(PeopleID) ON UPDATE  NO ACTION  ON DELETE  NO ACTION
+);
+
+Create Table School (
+	SchoolID int NOT NULL identity(1,1),
+	SchoolName varchar(25),
+	Street varchar(25),
+	City varchar(25),
+	StateAbr varchar(2),
+	ZipCode int,
+	CONSTRAINT PK_School PRIMARY KEY (SchoolID)
+);
+
+ALTER TABLE HostHome
+ADD CONSTRAINT PK_Home PRIMARY KEY (HomeID);
