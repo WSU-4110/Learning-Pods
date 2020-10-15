@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!--  COLOR SCHEME 
 #082C44 - navy
 #71EAF5 - light blue
@@ -6,8 +7,6 @@
 #FD2C88 - dark pink
 -->
 
-
-<!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Edit Profile</title>
@@ -43,17 +42,18 @@
         </div>
 
         <!-- MAIN BODY -->
+		
         <div class="main">
             <h2>Profile</h2><br><hr><br>
-			<form action="/action_page.php">
-				<label for="fname">First name:</label><br>
-				<input type="text" id="fname" name="fname" value="John"><br><br>
-				<label for="lname">Last name:</label><br>
-				<input type="text" id="lname" name="lname" value="Doe"><br><br>
-				<label for="birthday">Birthday:</label><br>
-  				<input type="date" id="birthday" name="birthday"><br><br>
-				<label for="zipcode">Zip Code:</label><br>
-				<input type="text" id="zipcode" name="zipcode" value="48312"><br><br>
+			<form action="php/getProfile.php" method="post">
+				<label for="FirstName">First name:</label><br>
+				<input type="text" id="FirstName" name="FirstName" value="John"><br><br>
+				<label for="LastName">Last name:</label><br>
+				<input type="text" id="LastName" name="LastName" value="Doe"><br><br>
+				<label for="Birthday">Birthday:</label><br>
+  				<input type="date" id="Birthday" name="Birthday"><br><br>
+				<label for="ZipCode">Zip Code:</label><br>
+				<input type="text" id="ZipCode" name="ZipCode" value="48312"><br><br>
 				<input type="submit" value="Submit">
 			</form>
         </div>
