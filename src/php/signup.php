@@ -51,6 +51,10 @@
                         <input class="form-control" type="password" name="cpassword" placeholder="Confirm password" required>
                     </div>
                     <div class="form">
+                    <input class="form-control" type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="../policy.html">Privacy policy</a></label><br><br>
+                    </div>
+
+                    <div class="form">
                         <input class="form-control button" type="submit" name="signup" value="Signup">
                     </div>
 					<span class="forgotpass">Already a member? <a href="login.html" alt="pass"">Login</a></span>
