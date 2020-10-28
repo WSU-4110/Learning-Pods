@@ -15,7 +15,8 @@
    }
 
 
-    mysqli_query($con,"INSERT INTO People(LastName, FirstName, Birthday, ZipCode) VALUES ('Kirton','Dakota','1994-01-10',48312)");
+    mysqli_query($con,"INSERT INTO People(LastName, FirstName, Birthday, ZipCode) 
+	VALUES ('Kirton','Dakota','1994-01-10',48312)");
     
     $result = mysqli_query($con,"SELECT * FROM People;"); 
    while($row = mysqli_fetch_array($result))
