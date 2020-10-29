@@ -7,42 +7,37 @@
    $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
    
    
-   if(isset($_POST['submit'])) {
-   if(! $db ) {
-               die('Could not connect: ' . mysql_error());
-            }
-            
-            if(! get_magic_quotes_gpc() ) {
-               $fname = addslashes ($_POST['FirstName']);
-			   $lname = addslashes ($_POST['LastName']);
-			   $bday = addslashes ($_POST['Birthday']);
-			   $zcode = addslashes ($_POST['ZipCode']);
-			   $nkids = addslashes ($_POST['NumKids']);
-			   $host = addslashes ($_POST['CanHost']);
-			   $email = addslashes ($_POST['Email']);
-            }else {
-			   $fname = $_POST['FirstName'];
-			   $lname = $_POST['LastName'];
-			   $bday = $_POST['Birthday'];
-			   $zcode = $_POST['ZipCode'];
-			   $nkids = $_POST['NumKids'];
-			   $host = $_POST['CanHost'];
-			   $email = $_POST['Email'];
-            }
-            
-            $sql = "INSERT INTO People ". "(lname,fname, bday, bday, zcode) ". 
-			"VALUES('$LastName','$FirstName',$Birthday, $ZipCode)";
-               
-            //mysql_select_db('test_db');
-            $retval = mysql_query( $sql, $db );
-            
-            if(! $retval ) {
-               die('Could not enter data: ' . mysql_error());
-            }
-            
-            echo "Entered data successfully\n";
-            
-            mysql_close($db);
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+		if(! $db ) {
+		   die('Could not connect: ' . mysql_error());
+		}
+		
+		
+	   $fname = $_POST['FirstName'];
+	   $lname = $_POST['LastName'];
+	   $bday = $_POST['Birthday'];
+	   $zcode = $_POST['ZipCode'];
+	   $nkids = $_POST['NumKids'];
+	   $host = $_POST['CanHost'];
+	   $email = $_POST['Email'];
+		
+		
+		mysqli_query($db, "INSERT INTO People ". "(LastName,FirstName,Birthday, ZipCode) ". 
+		"VALUES('$lname','$fname', '$bday', $zcode)");
+		
+		echo "Entered data successfully\n";
+		   
+		$result = mysqli_query($db,"SELECT * FROM People;"); 
+	    while($row = mysqli_fetch_array($result))
+	    {
+		  echo $row['FirstName'] . " " . $row['LastName'];
+		  echo "<br>";
+	    }
+		
+		
+		
+		mysqli_close($db);
+   }
 ?>
 
 <html lang="en">
@@ -96,7 +91,7 @@
             <div class="card">
                 <div class="container">
             <h2>Profile</h2><br><hr><br>
-			<form action="php/getProfile.php" method="post">
+			<form action="<?php $_PHP_SELF ?>" method="post">
 				<label for="FirstName">First name:</label><br>
 				<input type="text" id="FirstName" name="FirstName" value="John"><br><br>
 				<label for="LastName">Last name:</label><br>
