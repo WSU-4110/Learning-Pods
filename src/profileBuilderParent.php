@@ -1,10 +1,12 @@
-
 <?php
-   include("config.php");
-	session_start();
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
+    include("config.php");
+	
    
    
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
+	if($_SERVER["REQUEST_METHOD"] == "POST") {
 		if(! $db ) {
 		   die('Could not connect: ' . mysql_error());
 		}
@@ -17,24 +19,29 @@
 	   $nkids = $_POST['NumKids'];
 	   $host = $_POST['CanHost'];
 	   $email = $_POST['Email'];
+	   $userid = $_SESSION['login_id'];
 		
 		
-		mysqli_query($db, "INSERT INTO People ". "(LastName,FirstName,Birthday, ZipCode) ". 
-		"VALUES('$lname','$fname', '$bday', $zcode)");
+		$sql1 = "INSERT INTO People (LastName,FirstName,Birthday, ZipCode, UserID) 
+				VALUES('$lname','$fname', '$bday', $zcode, $userid)";
 		
-		echo "Entered data successfully\n";
-		   
-		$result = mysqli_query($db,"SELECT * FROM People;"); 
-	    while($row = mysqli_fetch_array($result))
-	    {
-		  echo $row['FirstName'] . " " . $row['LastName'];
-		  echo "<br>";
-	    }
+		if ($db->query($sql1) === TRUE) {
+			echo "New record created successfully";
+		} else {
+			echo "Error: " . $sql1 . "<br>" . $db->error;
+		}
 		
+		$parentid = current(mysqli_query($db, "select PeopleID from People where UserID = $userid")->fetch_assoc());
 		
+		$sql2 = "INSERT INTO Parent (CanHost,Email,NumKids, ParentID) 
+				VALUES('$host','$email', '$nkids', $parentid)";
 		
-		mysqli_close($db);
-   }
+		if ($db->query($sql2) === TRUE) {
+			echo "New record created successfully";
+		} else {
+			echo "Error: " . $sql2 . "<br>" . $db->error;
+		}
+	}
 ?>
 
 <html lang="en">
@@ -65,7 +72,7 @@
             <div class="menu">
                 <a href="javascript:void(0);" onclick="openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>
                 <div id="myAccount">
-                    <a href="php/logout.php" alt="logout"> Logout </a>
+                    <a href="logout.php" alt="logout"> Logout </a>
                 </div>
                 <a href="javascript:void(0);" onclick="openMenu()"  id="logout"><i class="material-icons md-48" style="font-size: 28px;">exit_to_app</i></a>
             </div>
@@ -87,7 +94,7 @@
         <div class="main">
             <div class="card">
                 <div class="container">
-            <h2>Profile</h2><br><hr><br>
+            <h2>Parent Profile</h2><br><hr><br>
 			<form action="<?php $_PHP_SELF ?>" method="post">
 				<label for="FirstName">First name:</label><br>
 				<input type="text" id="FirstName" name="FirstName" value="John"><br><br>
