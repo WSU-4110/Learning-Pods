@@ -38,28 +38,23 @@
                         <?php
                     }
                     ?>
-                    <div class="form">
+                    <div class="form"> <!-- calling this in every 2 lines was not necessary -->
                         <input class="form-control" type="text" name="name" placeholder="Full Name" required value="<?php echo $name ?>">
-                    </div>
-                    <div class="form">
+                        <br>
                         <input class="form-control" type="email" name="email" placeholder="Email Address" required value="<?php echo $email ?>">
-                    </div>
-                    <div class="form">
+                        <br>
                         <input class="form-control" type="password" name="password" placeholder="Password" required>
-                    </div>
-                    <div class="form">
+                        <br>
                         <input class="form-control" type="password" name="cpassword" placeholder="Confirm password" required>
-                    </div>
-                    <div class="form">
-                    <input class="form-control" type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="../policy.html">Privacy policy</a></label><br><br>
-                    </div>
-
-                    <div class="form">
+                        
+                        <br><!-- PRIVACY POLICY -->
+                        <input class="form-control" type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="../policy.html">Privacy Policy</a></label><br><br>
+                    
+                        <br>
                         <input class="form-control button" type="submit" name="signup" value="Signup">
+
+                        <span class="forgotpass">Already a member? <a href="login.html" alt="pass"">Login</a></span>
                     </div>
-					<span class="forgotpass">Already a member? <a href="login.html" alt="pass"">Login</a></span>
-                  </div>
-                </form>
             </div>
         </div>
     </div>
