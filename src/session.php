@@ -1,5 +1,7 @@
 <?php
-	session_start();
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
 	include('config.php');
 
 	$user_check = $_SESSION['login_user'];
