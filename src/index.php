@@ -1,7 +1,7 @@
 <?php
-   session_start();
-   
-   
+    if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
 ?>
 
 <!DOCTYPE html>
@@ -29,8 +29,6 @@
             <div></div>
             <div>
                 <h1>Logo</h1>
-				<h2>Welcome to Learning Pods <?php echo $login_session; ?></h2>
-				<h2><a href = "logout.php">Sign Out</a></h2>
             </div>
             <div class="menu">
                 <a href="javascript:void(0);" onclick="openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>
@@ -58,6 +56,8 @@
                 <div class="container">
                 
                     <h2>Home</h2>
+					<h2>Welcome to Learning Pods <?php echo $_SESSION["login_user"]; ?></h2><br>
+					<h2><a href = "logout.php">Sign Out</a></h2><br>
                     </div>
             </div>
         </div>
