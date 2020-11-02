@@ -1,26 +1,30 @@
 <?php
-   session_start();
-   include('config.php');
-   
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      //username and password sent from form 
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
-      
-      $sql = "SELECT UserID FROM LogOn WHERE UserName = '$myusername' and UserPassword = '$mypassword'";
-      $result = mysqli_query($db,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $count = mysqli_num_rows($result);
-      
-      // must be in the same row
-      if($count == 1) {
-         $_SESSION['login_user'] = $myusername;
-         
-         header("location: index.php");
-      }else {
-         $error = "Your Login Name or Password is invalid";
-      }
-   }
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
+	include('config.php');
+
+	if($_SERVER["REQUEST_METHOD"] == "POST") {
+		//username and password sent from form 
+		$myusername = mysqli_real_escape_string($db,$_POST['username']);
+		$mypassword = mysqli_real_escape_string($db,$_POST['password']); 
+
+		$sql = "SELECT UserID FROM LogOn WHERE UserName = '$myusername' and UserPassword = '$mypassword'";
+		$result = mysqli_query($db,$sql);
+		$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+		$count = mysqli_num_rows($result);
+
+		// must be in the same row
+		if($count == 1) {
+			$_SESSION['login_user'] = $myusername;
+			$_SESSION['login_id'] = current(mysqli_query($db, "SELECT UserID FROM LogOn WHERE UserName = '$myusername' and UserPassword = '$mypassword'")->fetch_assoc());
+
+			header("location: index.php");
+		}
+		else {
+			$error = "Your Login Name or Password is invalid";
+		}
+	}
 ?>
    <head>
       <title>Learning Pods Login</title>
