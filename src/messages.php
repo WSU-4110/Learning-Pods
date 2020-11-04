@@ -1,42 +1,14 @@
-<!--  COLOR SCHEME
-#082C44 - navy
-#71EAF5 - light blue
-#FEE6E2 - lightpnk
-#FFA94C - gold
-#FD2C88 - dark pink
--->
-
 <?php
-   include("config.php");
-   session_start();
-   
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      //username and password sent from form 
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
-      
-      $sql = "SELECT id FROM LogOn WHERE username = '$myusername' and passcode = '$mypassword'";
-      $result = mysqli_query($db,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
-      $count = mysqli_num_rows($result);
-      
-      // must be in the same row
-      if($count == 1) {
-         session_register("myusername");
-         $_SESSION['sessionCheck'] = $myusername;
-         
-         header("location: index.html");
-      }else {
-         $error = "Your Login Name or Password is invalid";
-      }
-   }
+    if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Resources</title>
+        <title>Inbox</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="learningPods.css">
@@ -62,7 +34,7 @@
             <div class="menu">
                 <a href="javascript:void(0);" onclick="openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>
                 <div id="myAccount">
-                    <a href="php/logout.php" alt="logout">Logout</a>
+                    <a href="php/logout.php" alt="logout"> Logout </a>
                 </div>
                 <a href="javascript:void(0);" onclick="openMenu()"  id="logout"><i class="material-icons md-48" style="font-size: 28px;">exit_to_app</i></a>
             </div>
@@ -72,10 +44,10 @@
         <!-- NAV BAR -->
         <div class="navbar">
                 <li><a href="index.html" alt="home"><i class="material-icons md-48">house</i></a></li>
-                <li><a href="messages.html" alt="messages"><i class="material-icons md-48">mail</i></a></li>
+                <li><a href="messages.html" class="active" alt="messages"><i class="material-icons md-48">mail</i></a></li>
                 <li><a href="calendar.html" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
                 <li><a href="profile.html" alt="profile"><i class="material-icons md-48">face</i></a></li>
-                <li><a href="resources.html"  class="active" alt="resources"><i class="material-icons md-48">book</i></a></li>
+                <li><a href="resources.html" alt="resources"><i class="material-icons md-48">book</i></a></li>
                 <li><a href="searchpods.html" alt="search group"><i class="material-icons md-48">search</i></a></li>
         </div>
 
@@ -83,23 +55,12 @@
         <div class="main">
             <div class="card">
                 <div class="container">
-            <h2>Resources</h2>
-            <p>
-	            Here are a list of resources.
-			</p>
-</p>	<h3>College</h3>
-			
-			<li><a href="https://ncte.org/resources/">www.ncte.org </a</li>
-			<li><a href="https://www.coursera.org/">www.coursera.org </a</li>
-			<li><a href="https://www.khanacademy.org/">www.kahnacademy.com </a</li>
-			<li><a href=" https://www.edutopia.org/ ">www.edutopia.org </a</li>
-          
-            
+                    <h2>Messages</h2>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<script>
+        <script>
             function openMenu() {
                 var menuTab = document.getElementById("myAccount");
                 if (menuTab.style.display == "block"){
@@ -115,6 +76,6 @@
             }
 
             
-</script>
+        </script>
     </body>
     </html>
