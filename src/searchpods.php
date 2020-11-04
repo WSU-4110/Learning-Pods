@@ -41,66 +41,61 @@
 
         <!-- NAV BAR -->
         <div class="navbar">
-                <li><a href="index.html" alt="home"><i class="material-icons md-48">house</i></a></li>
-                <li><a href="messages.html" alt="messages"><i class="material-icons md-48">mail</i></a></li>
-                <li><a href="calendar.html" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
-                <li><a href="profile.html" alt="profile"><i class="material-icons md-48">face</i></a></li>
-                <li><a href="resources.html" alt="resources"><i class="material-icons md-48">book</i></a></li>
-                <li><a href="searchpods.html"  class="active" alt="search group"><i class="material-icons md-48">search</i></a></li>
+                <li><a href="index.php" class="active" alt="home"><i class="material-icons md-48">house</i></a></li>
+                <li><a href="messages.php" alt="messages"><i class="material-icons md-48">mail</i></a></li>
+                <li><a href="calendar.php" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
+                <li><a href="profileBuilderNav.php" alt="profile"><i class="material-icons md-48">face</i></a></li>
+                <li><a href="resources.php" alt="resources"><i class="material-icons md-48">book</i></a></li>
+                <li><a href="searchpods.php" alt="search group"><i class="material-icons md-48">search</i> </a></li>
         </div>
-
-       
-        <!-- Search Bar -->
-        <style>
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-/* Style the "active" element to highlight the current page */
-.topnav a.active {
-  background-color: #2196F3;
-  color: white;
-}
-
-/* Style the search box inside the navigation bar */
-/* .topnav input[type=text] {
-  float: right;
-  padding: 6px;
-  border: none;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 18px;
-}
- 
-  .topnav a, .topnav input[type=text] {
-    float: none;
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
-  }
-  .topnav input[type=text] {
-    border: 1px solid #ccc;
-  } */
-
-</style>
+		
+		
     <!-- MAIN BODY -->
         <div class="main">
           <div class="card" style="height:150px;"> 
             <div class="container">
               <div class="topnav">
                 <h2>Search Pods</h2>
-                <label for="Search">Search</label><br>
-                <input type="text" placeholder="Search..">
+				
+				<form action="<?php $_PHP_SELF ?>" method="post">
+				<label for="SearchZip">Enter Zip Code to Search:</label><br>
+				<input type="text" id="SearchZip" name="SearchZip" value="00000"><br><br>
+                <input type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="policy.html">Privacy policy</a></label><br><br>
+				<input type="submit" id="submit" class="button" value="Submit">
+			</form>
+			
+			<?php
+				include("config.php");
+	
+   
+   
+				if($_SERVER["REQUEST_METHOD"] == "POST") {
+					if(! $db ) {
+					   die('Could not connect: ' . mysql_error());
+					}
+					
+				    $zip = $_POST['SearchZip'];
+					
+					$sql = "select FirstName, LastName, Grade
+							 from People join Child
+							 on People.PeopleID = Child.ChildID
+							 where ZipCode = $zip";
+					
+					$result = $db->query($sql);
 
+					if ($result->num_rows > 0) {
+					  // output data of each row
+						while($row = $result->fetch_assoc()) {
+						echo "First Name: " . $row["FirstName"]. "<br>Last Name: " . $row["LastName"]. 
+						"<br>Grade Level: " . $row["Grade"]. "<br><hr>";
+					    }
+					} 
+						else {
+							echo "0 results";
+						}
+				}
+			
+			?>
               </div>
             </div>
           </div>
