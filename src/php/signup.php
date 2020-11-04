@@ -41,7 +41,7 @@
 					<input type="text" id="username" name="username" value="username"><br><br>
 					<label for="password">Password:</label><br>
 					<input type="text" id="password" name="password" value="password"><br><br>
-					<input type="radio" name="Terms" required value="1"><label for="Terms"> I agree to the <a href="policy.html">Privacy policy</a></label><br><br>
+					<input type="radio" name="Terms" required value="1"><label for="Terms"> I agree to the <a href="policy.php">Privacy policy</a></label><br><br>
 					<input type="submit" id="submit" class="button" value="Submit">
 				</form>
 					<span class="forgotpass">Already a member? <a href="login.php" alt="pass">Login</a></span>
