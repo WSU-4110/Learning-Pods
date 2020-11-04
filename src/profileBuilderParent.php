@@ -106,7 +106,7 @@
                 <input type="text" id="CanHost" name="CanHost" value="Y"><br><br>
 				<label for="Email">Email:</label><br>
                 <input type="text" id="Email" name="Email" value="Y"><br><br>
-                <input type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="policy.html">Privacy policy</a></label><br><br>
+                <input type="radio" name="Terms" required value="1"><label for="Terms"> I agree to <a href="policy.html">Privacy policy</a></label><br><br>
 				<input type="submit" id="submit" class="button" value="Submit">
 			</form>
                 </div>
