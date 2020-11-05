@@ -43,12 +43,12 @@
 
         <!-- NAV BAR -->
         <div class="navbar">
-                <li><a href="index.html" alt="home"><i class="material-icons md-48">house</i></a></li>
-                <li><a href="messages.html" class="active" alt="messages"><i class="material-icons md-48">mail</i></a></li>
-                <li><a href="calendar.html" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
-                <li><a href="profile.html" alt="profile"><i class="material-icons md-48">face</i></a></li>
-                <li><a href="resources.html" alt="resources"><i class="material-icons md-48">book</i></a></li>
-                <li><a href="searchpods.html" alt="search group"><i class="material-icons md-48">search</i></a></li>
+                <li><a href="index.php" alt="home"><i class="material-icons md-48">house</i></a></li>
+                <li><a href="messages.php" class="active" alt="messages"><i class="material-icons md-48">mail</i></a></li>
+                <li><a href="calendar.php" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
+                <li><a href="profileBuilderNav.php" alt="profile"><i class="material-icons md-48">face</i></a></li>
+                <li><a href="resources.php" alt="resources"><i class="material-icons md-48">book</i></a></li>
+                <li><a href="searchpods.php" alt="search group"><i class="material-icons md-48">search</i></a></li>
         </div>
 
         <!-- MAIN BODY -->
