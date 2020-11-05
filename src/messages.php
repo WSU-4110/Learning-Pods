@@ -34,7 +34,7 @@
             <div class="menu">
                 <a href="javascript:void(0);" onclick="openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>
                 <div id="myAccount">
-                    <a href="php/logout.php" alt="logout">Logout</a>
+                    <a href="logout.php" alt="logout">Logout</a>
                 </div>
                 <a href="javascript:void(0);" onclick="openMenu()"  id="logout"><i class="material-icons md-48" style="font-size: 28px;">exit_to_app</i></a>
             </div>
@@ -43,12 +43,12 @@
 
         <!-- NAV BAR -->
         <div class="navbar">
-                <li><a href="index.html" alt="home"><i class="material-icons md-48">house</i></a></li>
-                <li><a href="messages.html" class="active" alt="messages"><i class="material-icons md-48">mail</i></a></li>
-                <li><a href="calendar.html" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
-                <li><a href="profile.html" alt="profile"><i class="material-icons md-48">face</i></a></li>
-                <li><a href="resources.html" alt="resources"><i class="material-icons md-48">book</i></a></li>
-                <li><a href="searchpods.html" alt="search group"><i class="material-icons md-48">search</i></a></li>
+                <li><a href="index.php" alt="home"><i class="material-icons md-48">house</i></a></li>
+                <li><a href="messages.php" class="active" alt="messages"><i class="material-icons md-48">mail</i></a></li>
+                <li><a href="calendar.php" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
+                <li><a href="profileBuilderNav.php" alt="profile"><i class="material-icons md-48">face</i></a></li>
+                <li><a href="resources.php" alt="resources"><i class="material-icons md-48">book</i></a></li>
+                <li><a href="searchpods.php" alt="search group"><i class="material-icons md-48">search</i></a></li>
         </div>
 
         <!-- MAIN BODY -->
