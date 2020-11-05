@@ -37,9 +37,9 @@
 				
 				<form action="<?php $_PHP_SELF ?>" method="post">
 					<label for="username">UserName:</label><br>
-					<input type="text" id="username" name="username" value="user name"><br><br>
+					<input type="text" id="username" name="username" value="user name" required><br><br>
 					<label for="password">Last name:</label><br>
-					<input type="text" id="password" name="password" value="password"><br><br>
+					<input type="text" id="password" name="password" value="password" required><br><br>
 					<input type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="policy.html">Privacy policy</a></label><br><br>
 					<input type="submit" id="submit" class="button" value="Submit">
 				</form>
