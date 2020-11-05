@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/resources.html
 <!--  COLOR SCHEME 
 #082C44 - navy
 #71EAF5 - light blue
@@ -6,38 +7,18 @@
 #FD2C88 - dark pink
 -->
 
+=======
+>>>>>>> dev-Dakota:src/resources.php
 <?php
-   include("config.php");
-   session_start();
-   
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      //username and password sent from form 
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
-      
-      $sql = "SELECT id FROM LogOn WHERE username = '$myusername' and passcode = '$mypassword'";
-      $result = mysqli_query($db,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
-      $count = mysqli_num_rows($result);
-      
-      // must be in the same row
-      if($count == 1) {
-         session_register("myusername");
-         $_SESSION['sessionCheck'] = $myusername;
-         
-         header("location: index.html");
-      }else {
-         $error = "Your Login Name or Password is invalid";
-      }
-   }
+    if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Inbox</title>
+        <title>Resources</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="learningPods.css">
@@ -73,10 +54,10 @@
         <!-- NAV BAR -->
         <div class="navbar">
                 <li><a href="index.html" alt="home"><i class="material-icons md-48">house</i></a></li>
-                <li><a href="messages.html" class="active" alt="messages"><i class="material-icons md-48">mail</i></a></li>
+                <li><a href="messages.html" alt="messages"><i class="material-icons md-48">mail</i></a></li>
                 <li><a href="calendar.html" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
                 <li><a href="profile.html" alt="profile"><i class="material-icons md-48">face</i></a></li>
-                <li><a href="resources.html" alt="resources"><i class="material-icons md-48">book</i></a></li>
+                <li><a href="resources.html"  class="active" alt="resources"><i class="material-icons md-48">book</i></a></li>
                 <li><a href="searchpods.html" alt="search group"><i class="material-icons md-48">search</i></a></li>
         </div>
 
@@ -84,7 +65,15 @@
         <div class="main">
             <div class="card">
                 <div class="container">
-                    <h2>Messages</h2>
+                    <h2>Resources</h2>
+                    <p>Here are a list of resources.</p>
+                    <h3>College</h3>
+                    
+                    <li><a href="https://ncte.org/resources/">www.ncte.org </a</li>
+                    <li><a href="https://www.coursera.org/">www.coursera.org </a</li>
+                    <li><a href="https://www.khanacademy.org/">www.kahnacademy.com </a</li>
+                    <li><a href=" https://www.edutopia.org/ ">www.edutopia.org </a</li>
+
                 </div>
             </div>
         </div>
@@ -107,4 +96,4 @@
             
         </script>
     </body>
-    </html>
+</html>

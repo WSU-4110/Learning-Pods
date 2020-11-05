@@ -1,13 +1,8 @@
-
-
-<!--  COLOR SCHEME 
-#082C44 - navy
-#71EAF5 - light blue
-#FEE6E2 - lightpnk
-#FFA94C - gold
-#FD2C88 - dark pink
--->
-
+<?php
+    if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
