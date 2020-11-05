@@ -45,7 +45,7 @@
                 <li><a href="index.php" alt="home"><i class="material-icons md-48">house</i></a></li>
                 <li><a href="messages.php" alt="messages"><i class="material-icons md-48">mail</i></a></li>
                 <li><a href="calendar.php" class="active" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
-                <li><a href="profile.php" alt="profile"><i class="material-icons md-48">face</i></a></li>
+                <li><a href="profileBuilderNav.php" alt="profile"><i class="material-icons md-48">face</i></a></li>
                 <li><a href="resources.php" alt="resources"><i class="material-icons md-48">book</i></a></li>
                 <li><a href="searchpods.php" alt="search group"><i class="material-icons md-48">search</i></a></li>
         </div>
