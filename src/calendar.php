@@ -1,42 +1,13 @@
-<!--  COLOR SCHEME 
-#082C44 - navy
-#71EAF5 - light blue
-#FEE6E2 - lightpnk
-#FFA94C - gold
-#FD2C88 - dark pink
--->
-
 <?php
-   include("config.php");
-   session_start();
-   
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      //username and password sent from form 
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
-      
-      $sql = "SELECT id FROM LogOn WHERE username = '$myusername' and passcode = '$mypassword'";
-      $result = mysqli_query($db,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
-      $count = mysqli_num_rows($result);
-      
-      // must be in the same row
-      if($count == 1) {
-         session_register("myusername");
-         $_SESSION['sessionCheck'] = $myusername;
-         
-         header("location: index.html");
-      }else {
-         $error = "Your Login Name or Password is invalid";
-      }
-   }
+    if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Learning Pods</title>
+        <title>Events</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="learningPods.css">
@@ -68,24 +39,23 @@
             </div>
 
         </header>
-        
+
         <!-- NAV BAR -->
         <div class="navbar">
-                <li><a href="index.html" class="active" alt="home"><i class="material-icons md-48">house</i></a></li>
+                <li><a href="index.html" alt="home"><i class="material-icons md-48">house</i></a></li>
                 <li><a href="messages.html" alt="messages"><i class="material-icons md-48">mail</i></a></li>
-                <li><a href="calendar.html" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
+                <li><a href="calendar.html" class="active" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
                 <li><a href="profile.html" alt="profile"><i class="material-icons md-48">face</i></a></li>
                 <li><a href="resources.html" alt="resources"><i class="material-icons md-48">book</i></a></li>
-                <li><a href="searchpods.html" alt="search group"><i class="material-icons md-48">search</i> </a></li>
+                <li><a href="searchpods.html" alt="search group"><i class="material-icons md-48">search</i></a></li>
         </div>
 
         <!-- MAIN BODY -->
-        <div class="main"> 
+        <div class="main">
             <div class="card">
                 <div class="container">
-                
-                    <h2>Home</h2>
-                    </div>
+                    <h2>Events</h2>
+                </div>
             </div>
         </div>
 
@@ -104,7 +74,7 @@
                 }   
             }
 
-
+            
         </script>
     </body>
     </html>

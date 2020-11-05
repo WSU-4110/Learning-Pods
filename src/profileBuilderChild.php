@@ -1,48 +1,47 @@
-
 <?php
-   define('DB_SERVER', 'localhost');
-   define('DB_USERNAME', 'id15127113_admin');
-   define('DB_PASSWORD', 'Jefferson2020!!');
-   define('DB_DATABASE', 'id15127113_learningpodsdb');
-   $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
+    include("config.php");
+	
    
    
-   if(isset($_POST['submit'])) {
-   if(! $db ) {
-               die('Could not connect: ' . mysql_error());
-            }
-            
-            if(! get_magic_quotes_gpc() ) {
-               $fname = addslashes ($_POST['FirstName']);
-			   $lname = addslashes ($_POST['LastName']);
-			   $bday = addslashes ($_POST['Birthday']);
-			   $zcode = addslashes ($_POST['ZipCode']);
-			   $nkids = addslashes ($_POST['NumKids']);
-			   $host = addslashes ($_POST['CanHost']);
-			   $email = addslashes ($_POST['Email']);
-            }else {
-			   $fname = $_POST['FirstName'];
-			   $lname = $_POST['LastName'];
-			   $bday = $_POST['Birthday'];
-			   $zcode = $_POST['ZipCode'];
-			   $nkids = $_POST['NumKids'];
-			   $host = $_POST['CanHost'];
-			   $email = $_POST['Email'];
-            }
-            
-            $sql = "INSERT INTO People ". "(lname,fname, bday, bday, zcode) ". 
-			"VALUES('$LastName','$FirstName',$Birthday, $ZipCode)";
-               
-            //mysql_select_db('test_db');
-            $retval = mysql_query( $sql, $db );
-            
-            if(! $retval ) {
-               die('Could not enter data: ' . mysql_error());
-            }
-            
-            echo "Entered data successfully\n";
-            
-            mysql_close($db);
+	if($_SERVER["REQUEST_METHOD"] == "POST") {
+		if(! $db ) {
+		   die('Could not connect: ' . mysql_error());
+		}
+		
+		
+	   $fname = $_POST['FirstName'];
+	   $lname = $_POST['LastName'];
+	   $bday = $_POST['Birthday'];
+	   $zcode = $_POST['ZipCode'];
+	   $grade = $_POST['Grade'];
+	   $userid = $_SESSION['login_id'];
+		
+		
+		$sql1 = "INSERT INTO People (LastName,FirstName,Birthday, ZipCode, UserID) 
+				VALUES('$lname','$fname', '$bday', $zcode, $userid)";
+		
+		if ($db->query($sql1) === TRUE) {
+			echo "New record created successfully";
+		} else {
+			echo "Error: " . $sql1 . "<br>" . $db->error;
+		}
+		
+		$childid = current(mysqli_query($db, "select PeopleID from People where FirstName like '$fname'")->fetch_assoc());
+		$parentid = current(mysqli_query($db, "select PeopleID from People where PeopleID = $userid")->fetch_assoc());
+
+		
+		$sql2 = "INSERT INTO Child (Grade,ChildID,ParentID) 
+				VALUES('$grade', $childid, $parentid)";
+		
+		if ($db->query($sql2) === TRUE) {
+			echo "New record created successfully";
+		} else {
+			echo "Error: " . $sql2 . "<br>" . $db->error;
+		}
+	}
 ?>
 
 <html lang="en">
@@ -73,7 +72,11 @@
             <div class="menu">
                 <a href="javascript:void(0);" onclick="openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>
                 <div id="myAccount">
+<<<<<<< HEAD:src/profile.html
                     <a href="php/logout.php" alt="logout">Logout</a>
+=======
+                    <a href="logout.php" alt="logout"> Logout </a>
+>>>>>>> dev-Dakota:src/profileBuilderChild.php
                 </div>
                 <a href="javascript:void(0);" onclick="openMenu()"  id="logout"><i class="material-icons md-48" style="font-size: 28px;">exit_to_app</i></a>
             </div>
@@ -82,12 +85,21 @@
 
         <!-- NAV BAR -->
         <div class="navbar">
+<<<<<<< HEAD:src/profile.html
                 <li><a href="index.html" alt="home"><i class="material-icons md-48">house</i></a></li>
                 <li><a href="messages.html" alt="messages"><i class="material-icons md-48">mail</i></a></li>
                 <li><a href="calendar.html" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
                 <li><a href="profile.html" class="active" alt="profile"><i class="material-icons md-48">face</i></a></li>
                 <li><a href="resources.html" alt="resources"><i class="material-icons md-48">book</i></a></li>
                 <li><a href="searchpods.html" alt="search group"><i class="material-icons md-48">search</i></a></li>
+=======
+                <li><a href="index.php" class="active" alt="home"><i class="material-icons md-48">house</i></a></li>
+                <li><a href="messages.php" alt="messages"><i class="material-icons md-48">mail</i></a></li>
+                <li><a href="calendar.php" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
+                <li><a href="profileBuilderNav.php" alt="profile"><i class="material-icons md-48">face</i></a></li>
+                <li><a href="resources.php" alt="resources"><i class="material-icons md-48">book</i></a></li>
+                <li><a href="searchpods.php" alt="search group"><i class="material-icons md-48">search</i> </a></li>
+>>>>>>> dev-Dakota:src/profileBuilderChild.php
         </div>
 
         <!-- MAIN BODY -->
@@ -95,6 +107,7 @@
         <div class="main">
             <div class="card">
                 <div class="container">
+<<<<<<< HEAD:src/profile.html
                     <h2>Profile</h2><br><hr><br>
                     <form action="php/getProfile.php" method="post">
                         <label for="FirstName">First name:</label><br>
@@ -114,6 +127,23 @@
                         <input type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="policy.html">Privacy policy</a></label><br><br>
                         <input type="submit" id="submit" class="button" value="Submit">
                     </form>
+=======
+            <h2>Parent Profile</h2><br><hr><br>
+			<form action="<?php $_PHP_SELF ?>" method="post">
+				<label for="FirstName">First name:</label><br>
+				<input type="text" id="FirstName" name="FirstName" value="John"><br><br>
+				<label for="LastName">Last name:</label><br>
+				<input type="text" id="LastName" name="LastName" value="Doe"><br><br>
+				<label for="Birthday">Birthday:</label><br>
+  				<input type="date" id="Birthday" name="Birthday"><br><br>
+				<label for="ZipCode">Zip Code:</label><br>
+                <input type="text" id="ZipCode" name="ZipCode" value="48312"><br><br>
+				<label for="Grade">Grade Level(1-12):</label><br>
+                <input type="text" id="Grade" name="Grade" value="1"><br><br>
+                <input type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="policy.html">Privacy policy</a></label><br><br>
+				<input type="submit" id="submit" class="button" value="Submit">
+			</form>
+>>>>>>> dev-Dakota:src/profileBuilderChild.php
                 </div>
             </div>
         </div>
