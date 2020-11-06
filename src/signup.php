@@ -29,17 +29,19 @@
 </head>
 
 <body>
+<div align = "center">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 offset-md-4 form">
-				<h2 class="text-center">Learning Pods Signup</h2>
-				<p class="text-center">We just need a few things:</p>
+		<div style = "width:300px; border: solid 1px #FFA94C; " align = "center">
+            
+				<div style = "background-color:#082C44; color:#FFFFFF; padding:3px; text-align: center; "><b>Learning Pods Signup</b></div>
+				<p>Please enter the following information to create your Learning Pods account!</p>
 				
 				<form action="<?php $_PHP_SELF ?>" method="post">
 					<label for="username">UserName:</label><br>
-					<input type="text" id="username" name="username" value="user name"><br><br>
+					<input type="text" id="username" name="username" value="user name" required><br><br>
 					<label for="password">Last name:</label><br>
-					<input type="text" id="password" name="password" value="password"><br><br>
+					<input type="text" id="password" name="password" value="password" required><br><br>
 					<input type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="policy.html">Privacy policy</a></label><br><br>
 					<input type="submit" id="submit" class="button" value="Submit">
 				</form>
