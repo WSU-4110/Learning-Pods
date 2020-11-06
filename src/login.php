@@ -30,8 +30,8 @@
    
    <body bgcolor = "#FFFFFF">
       <div align = "center">
-         <div style = "width:300px; border: solid 1px #FFA94C; " align = "left">
-            <div style = "background-color:#082C44; color:#FFFFFF; padding:3px;"><b>Login</b></div>
+         <div style = "width:300px; border: solid 1px #FFA94C; " align = "center">
+            <div style = "background-color:#082C44; color:#FFFFFF; padding:3px;"><b>Learning Pods Login</b></div>
 				
             <div style = "margin:30px">
                
