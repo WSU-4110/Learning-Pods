@@ -13,8 +13,8 @@ class DataConn {
      /
     private static function getInstance(){
         if (self::$instance == null){
-            $className = __CLASS__;
-            self::$instance = new $className;
+            $classData = __CLASS__;
+            self::$instance = new $classData;
         }
 
         return self::$instance;
