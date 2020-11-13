@@ -1,6 +1,24 @@
 <?php
 
+class DataConn {
 
+    private static $instance;
+    private $DataConn;
+
+    private function __construct() {}
+
+    /
+     
+      @return DataConn
+     /
+    private static function getInstance(){
+        if (self::$instance == null){
+            $className = __CLASS__;
+            self::$instance = new $className;
+        }
+
+        return self::$instance;
+    }
 
 $robo = 'robot@learnigpods.com';
 
