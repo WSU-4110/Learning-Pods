@@ -29,13 +29,13 @@
             <div></div>
             <div>
                 <h1>Logo</h1>
-            </div>
+                </div>
             <div class="menu">
-                <a href="javascript:void(0);" onclick="openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>
+                <a href="javascript:void(0);" onclick="userSignedIn.openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>
                 <div id="myAccount">
                     <a href="logout.php" alt="logout">Logout</a>
                 </div>
-                <a href="javascript:void(0);" onclick="openMenu()"  id="logout"><i class="material-icons md-48" style="font-size: 28px;">exit_to_app</i></a>
+                <a href="javascript:void(0);" onclick="userSignedIn.openMenu()"  id="logout"><i class="material-icons md-48" style="font-size: 28px;">exit_to_app</i></a>
             </div>
 
         </header>
@@ -59,22 +59,9 @@
             </div>
         </div>
 
+        <script src="logOutOption.js"></script>
         <script>
-            function openMenu() {
-                var menuTab = document.getElementById("myAccount");
-                if (menuTab.style.display == "block"){
-                    cacncel.style.display = "none"; 
-                    logout.style.display = "block";
-                    menuTab.style.display = "none"; 
-                }
-                else { 
-                    cacncel.style.display = "block";
-                    logout.style.display = "none";
-                    menuTab.style.display = "block";
-                }   
-            }
-
-            
+            var userSignedIn = new logOutOption();
         </script>
     </body>
     </html>

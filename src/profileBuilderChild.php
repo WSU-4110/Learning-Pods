@@ -148,22 +148,9 @@
             </div>
         </div>
 
+        <script src="logOutOption.js"></script>
         <script>
-            function openMenu() {
-                var menuTab = document.getElementById("myAccount");
-                if (menuTab.style.display == "block"){
-                    cacncel.style.display = "none"; 
-                    logout.style.display = "block";
-                    menuTab.style.display = "none"; 
-                }
-                else { 
-                    cacncel.style.display = "block";
-                    logout.style.display = "none";
-                    menuTab.style.display = "block";
-                }   
-            }
-
-            
+            var userSignedIn = new logOutOption();
         </script>
     </body>
  </html>
