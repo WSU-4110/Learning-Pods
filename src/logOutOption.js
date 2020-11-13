@@ -1,4 +1,4 @@
-class logOutOtion {
+class logOutOption {
     constructor(){
         if(!logOutOption){
             logOutOtion._instance = this; }
