@@ -1,6 +1,30 @@
 <?php
    include("config.php");
    session_start();
+
+ class SingletonImplementation {
+	   
+	   private static $instance = []; {
+	   }
+	   
+	   proteceted function __construct() {
+	   }
+	   
+	   protected function __clone() { 
+	   }
+	   
+	   
+	   /* Create a singleton instance, then every run afterwards point user back to instance */
+	   public static function newInstance(): SingletonImplementation
+    {
+        $cls = static::class;
+        if (!isset(self::$instance[$cls])) {
+            self::$instance[$cls] = new static();
+        }
+
+        return self::$instance[$cls];
+    }
+   }
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       //username and password sent from form 
