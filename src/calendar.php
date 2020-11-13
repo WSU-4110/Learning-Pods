@@ -1,3 +1,4 @@
+      <!-- Commit for the Assignment 5 -->
 <?php
     if (session_status() == PHP_SESSION_NONE) {
 		session_start();
