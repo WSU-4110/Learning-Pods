@@ -40,12 +40,13 @@ CREATE TABLE HostHome (
 );
 
 Create Table School (
-	SchoolID int NOT NULL identity(1,1),
-	SchoolName varchar(25),
-	Street varchar(25),
-	City varchar(25),
-	StateAbr varchar(2),
-	ZipCode int,
+	SchoolID BIGINT NOT NULL,
+	MinGrade INT NOT NULL,
+	MaxGrade INT NOT NULL,
+	SchoolName VARCHAR(60) NOT NULL,
+	SchoolCity VARCHAR(60) NOT NULL,
+	SchoolZipCode INT NOT NULL,
+
 	CONSTRAINT PK_School PRIMARY KEY (SchoolID)
 );
 
