@@ -13,6 +13,7 @@ class config_test extends TestCase
     {
         $this->result = new DB_Connect('2.000webhhost', 'id15127113_admin', 'Jefferson2020!!', 'id15127113_learningpodsdb');
         $this->assertIsObject($this->result);
+        $this->assertInstanceOf('DB_Connect', $this->result);
     }
  
 }
