@@ -1,0 +1,13 @@
+<?php declare(strict_types=1);
+use PHPUnit\Framework\TestCase;
+
+final class TestingDepend extends Method2
+{
+    public function Depend(): void
+    {
+        $this->assertTrue(false);
+    }
+    public function testTwo(): void
+    {
+    }
+}
