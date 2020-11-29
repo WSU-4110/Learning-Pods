@@ -1,7 +1,14 @@
 <?php
     if (session_status() == PHP_SESSION_NONE) {
 		session_start();
-	}
+    }
+    
+    class ZipCode {
+        public function ZipCodeEntered($zip){
+            return $zip;
+        }
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
