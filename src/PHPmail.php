@@ -24,7 +24,27 @@ try {
         ]
     ];
     }
-
+class PHPMailer extends PHPUnit_Framework_TestCase
+{
+    private $PHPMail;
+ 
+    protected function setUp()
+    {
+        $this->PHPMail = new PHPMailer();
+    }
+ 
+    protected function tearDown()
+    {
+        $this->PHPMailer = NULL;
+    }
+ 
+    public function send()
+    {
+        $result = $this->PHPMailer->send(Mail);
+      
+    }
+ 
+}
 
     $mailer->Host = 'mail.learningpods.com';
     $mailer->SMTPAuth = true;
