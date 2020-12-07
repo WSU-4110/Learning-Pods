@@ -164,6 +164,7 @@ h1 {
 
 .container {
   padding: 10px;
+  display: inline;
 }
 
 
