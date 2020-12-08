@@ -2,6 +2,10 @@
 	if (session_status() == PHP_SESSION_NONE) {
 		session_start();
 	}
+	if(!isset($_SESSION['login_user'])){
+		header('Location: login.php');
+		exit();
+	}
     include("config.php");
 	
    
@@ -20,8 +24,8 @@
 	   $userid = $_SESSION['login_id'];
 		
 		
-		$sql1 = "INSERT INTO People (LastName,FirstName,Birthday, ZipCode, UserID) 
-				VALUES('$lname','$fname', '$bday', $zcode, $userid)";
+		$sql1 = "INSERT INTO People (LastName,FirstName,Birthday, ZipCode, UserID, P_ID) 
+				VALUES('$lname','$fname', '$bday', $zcode, $userid, 0)";
 		
 		if ($db->query($sql1) === TRUE) {
 			//echo "New record created successfully";

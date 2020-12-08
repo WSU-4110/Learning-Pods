@@ -2,6 +2,10 @@
     if (session_status() == PHP_SESSION_NONE) {
 		session_start();
 	}
+	if(!isset($_SESSION['login_user'])){
+		header('Location: login.php');
+		exit();
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,11 +79,12 @@
 				    
 					$userid = $_SESSION['login_id'];
 					$parentid = current(mysqli_query($db, "select PeopleID from People where UserID like '$userid'")->fetch_assoc());
+					$zip = current(mysqli_query($db, "select ZipCode from People where UserID like '$userid'")->fetch_assoc());
 					
 					$sql = "select FirstName, LastName, Grade
 							 from People join Child
 							 on People.PeopleID = Child.ChildID
-							 where ChildID = $userid";
+							 where ZipCode = $zip";
 					
 					$result = $db->query($sql);
 

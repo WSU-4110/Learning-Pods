@@ -13,7 +13,8 @@
 	$login_session = $row['UserName'];
 
 	if(!isset($_SESSION['login_user'])){
-		die();
+		header('Location: login.php');
+		exit();
 	}
 	
 	$sessionID = $_SESSION['sessionUser'];
