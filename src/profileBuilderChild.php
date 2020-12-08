@@ -24,20 +24,20 @@
 				VALUES('$lname','$fname', '$bday', $zcode, $userid)";
 		
 		if ($db->query($sql1) === TRUE) {
-			echo "New record created successfully";
+			//echo "New record created successfully";
 		} else {
 			echo "Error: " . $sql1 . "<br>" . $db->error;
 		}
 		
-		$childid = current(mysqli_query($db, "select PeopleID from People where FirstName like '$fname'")->fetch_assoc());
-		$parentid = current(mysqli_query($db, "select PeopleID from People where PeopleID = $userid")->fetch_assoc());
+		$userid = $_SESSION['login_id'];
+		$parentid = current(mysqli_query($db, "select PeopleID from People where UserID = $userid")->fetch_assoc());
 
 		
-		$sql2 = "INSERT INTO Child (Grade,ChildID,ParentID) 
-				VALUES('$grade', $childid, $parentid)";
+		$sql2 = "INSERT INTO Child (Grade,ParentID) 
+				VALUES('$grade', $parentid)";
 		
 		if ($db->query($sql2) === TRUE) {
-			echo "New record created successfully";
+			//echo "New record created successfully";
 		} else {
 			echo "Error: " . $sql2 . "<br>" . $db->error;
 		}
@@ -72,11 +72,7 @@
             <div class="menu">
                 <a href="javascript:void(0);" onclick="openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>
                 <div id="myAccount">
-<<<<<<< HEAD:src/profile.html
-                    <a href="php/logout.php" alt="logout">Logout</a>
-=======
                     <a href="logout.php" alt="logout"> Logout </a>
->>>>>>> dev-Dakota:src/profileBuilderChild.php
                 </div>
                 <a href="javascript:void(0);" onclick="openMenu()"  id="logout"><i class="material-icons md-48" style="font-size: 28px;">exit_to_app</i></a>
             </div>
@@ -85,21 +81,12 @@
 
         <!-- NAV BAR -->
         <div class="navbar">
-<<<<<<< HEAD:src/profile.html
-                <li><a href="index.html" alt="home"><i class="material-icons md-48">house</i></a></li>
-                <li><a href="messages.html" alt="messages"><i class="material-icons md-48">mail</i></a></li>
-                <li><a href="calendar.html" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
-                <li><a href="profile.html" class="active" alt="profile"><i class="material-icons md-48">face</i></a></li>
-                <li><a href="resources.html" alt="resources"><i class="material-icons md-48">book</i></a></li>
-                <li><a href="searchpods.html" alt="search group"><i class="material-icons md-48">search</i></a></li>
-=======
-                <li><a href="index.php" class="active" alt="home"><i class="material-icons md-48">house</i></a></li>
+                <li><a href="index.php"alt="home"><i class="material-icons md-48">house</i></a></li>
                 <li><a href="messages.php" alt="messages"><i class="material-icons md-48">mail</i></a></li>
                 <li><a href="calendar.php" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
-                <li><a href="profileBuilderNav.php" alt="profile"><i class="material-icons md-48">face</i></a></li>
+                <li><a href="profileBuilderNav.php" class="active" alt="profile"><i class="material-icons md-48">face</i></a></li>
                 <li><a href="resources.php" alt="resources"><i class="material-icons md-48">book</i></a></li>
                 <li><a href="searchpods.php" alt="search group"><i class="material-icons md-48">search</i> </a></li>
->>>>>>> dev-Dakota:src/profileBuilderChild.php
         </div>
 
         <!-- MAIN BODY -->
@@ -107,27 +94,6 @@
         <div class="main">
             <div class="card">
                 <div class="container">
-<<<<<<< HEAD:src/profile.html
-                    <h2>Profile</h2><br><hr><br>
-                    <form action="php/getProfile.php" method="post">
-                        <label for="FirstName">First name:</label><br>
-                        <input type="text" id="FirstName" name="FirstName" value="John"><br><br>
-                        <label for="LastName">Last name:</label><br>
-                        <input type="text" id="LastName" name="LastName" value="Doe"><br><br>
-                        <label for="Birthday">Birthday:</label><br>
-                        <input type="date" id="Birthday" name="Birthday"><br><br>
-                        <label for="ZipCode">Zip Code:</label><br>
-                        <input type="text" id="ZipCode" name="ZipCode" value="48312"><br><br>
-                        <label for="NumKids">Number of Kids:</label><br>
-                        <input type="text" id="NumKids" name="NumKids" value="0"><br><br>
-                        <label for="CanHost">Can You Host? (Y or N):</label><br>
-                        <input type="text" id="CanHost" name="CanHost" value="Y"><br><br>
-                        <label for="Email">Email:</label><br>
-                        <input type="text" id="Email" name="Email" value="Y"><br><br>
-                        <input type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="policy.html">Privacy policy</a></label><br><br>
-                        <input type="submit" id="submit" class="button" value="Submit">
-                    </form>
-=======
             <h2>Parent Profile</h2><br><hr><br>
 			<form action="<?php $_PHP_SELF ?>" method="post">
 				<label for="FirstName">First name:</label><br>
@@ -140,10 +106,9 @@
                 <input type="text" id="ZipCode" name="ZipCode" value="48312"><br><br>
 				<label for="Grade">Grade Level(1-12):</label><br>
                 <input type="text" id="Grade" name="Grade" value="1"><br><br>
-                <input type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="policy.html">Privacy policy</a></label><br><br>
+                <input type="radio" name="Terms" required value="1"><label for="Terms"> I agree to <a href="policy.php">Privacy policy</a></label><br><br>
 				<input type="submit" id="submit" class="button" value="Submit">
 			</form>
->>>>>>> dev-Dakota:src/profileBuilderChild.php
                 </div>
             </div>
         </div>
