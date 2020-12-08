@@ -52,7 +52,7 @@
 		
     <!-- MAIN BODY -->
         <div class="main">
-          <div class="card" style="height:150px;"> 
+          <div class="card"> 
             <div class="container">
               <div class="topnav">
                 <h2>Search Pods</h2>

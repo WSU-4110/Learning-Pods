@@ -15,4 +15,16 @@
 	if(!isset($_SESSION['login_user'])){
 		die();
 	}
+	
+	$sessionID = $_SESSION['sessionUser'];
+
+	$ses_sql = mysqli_query($db,"select UserID from LogOn where UserID = '$sessionID' ");
+
+	$row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+	
+	$id_of_session = $row['UserID'];
+
+	if(!isset($_SESSION['sessionUser'])){
+		die();
+	}
 ?>
