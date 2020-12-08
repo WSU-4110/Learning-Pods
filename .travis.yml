@@ -1,3 +1,7 @@
 language: php
 php:
-  - 7.4.3
+  - 7.4 #will make less time in queue on travis
+services:
+  - mysql
+  
+# before_script:
