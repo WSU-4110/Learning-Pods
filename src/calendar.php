@@ -2,6 +2,10 @@
     if (session_status() == PHP_SESSION_NONE) {
 		session_start();
 	}
+	if(!isset($_SESSION['login_user'])){
+		header('Location: login.php');
+		exit();
+	}
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +60,14 @@
             <div class="card">
                 <div class="container">
                     <h2>Events</h2>
+			//==================== DYLAN ENTER CODE STARTING HERE ====
+			//========================================================
+			
+			
+			
+			
+			//========================================================
+			//==================== DYLAN DO NOT ENTER CODE PAST HERE =
                 </div>
             </div>
         </div>

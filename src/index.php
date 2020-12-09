@@ -2,6 +2,10 @@
     if (session_status() == PHP_SESSION_NONE) {
 		session_start();
 	}
+	if(!isset($_SESSION['login_user'])){
+		header('Location: login.php');
+		exit();
+	}
 ?>
 
 <!DOCTYPE html>
@@ -59,6 +63,8 @@
                     <h2>Home</h2>
 					<h2>Welcome to Learning Pods <?php echo $_SESSION["login_user"]; ?></h2><br>
 					<h2><a href = "logout.php">Sign Out</a></h2><br>
+					<h2><a href = "viewPods.php">Search Learning Pod Meetings</a></h2><br>
+					<h2><a href = "createPod.php">Create Learning Pod</a></h2><br>
                     </div>
             </div>
         </div>

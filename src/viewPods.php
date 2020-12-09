@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Find Nearby Pods</title>
+        <title>Search Meeting</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="learningPods.css">
@@ -30,9 +30,8 @@
         <!-- LOGO -->
         <header>
           <div></div>
-          <div id="logo" align="center">
-                <img height="72px" id="desktop" src="images/pods-logoW.png">
-                <img height="72px" id="mobile" src="images/pods-icon.png">
+          <div>
+              <h1>Logo</h1>
           </div>
           <div class="menu">
             <a href="javascript:void(0);" onclick="openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>
@@ -60,14 +59,14 @@
           <div class="card"> 
             <div class="container">
               <div class="topnav">
-                <h2>Search Pods</h2>
+                <h2>Search Learning Pod Meetings</h2>
 				
 				<form action="<?php $_PHP_SELF ?>" method="post">
 				<label for="SearchZip">Enter Zip Code to Search:</label><br>
 				<input type="text" id="SearchZip" name="SearchZip" value="00000"><br><br>
                 <input type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="policy.html">Privacy policy</a></label><br><br>
-				<input type="submit" id="submit" class="button" value="Submit">
-			</form>
+				<input type="submit" id="submit" class="button" value="Create Meeting">
+				</form>
 			
 			<?php
 				include("config.php");
@@ -80,30 +79,66 @@
 					}
 					
 				    $zip = $_POST['SearchZip'];
+					$userid = $_SESSION['login_id'];
+					$parentid = current(mysqli_query($db, "select PeopleID from People where UserID like '$userid'")->fetch_assoc());
 					
-					$sql = "select FirstName, LastName, Grade
-							 from People join Child
-							 on People.PeopleID = Child.ChildID
-							 where ZipCode = $zip";
+					$sql = "select PodID, Grade, ZipCode
+							from Pod
+							 where Pod.ZipCode = $zip";
 					
 					$result = $db->query($sql);
 
 					if ($result->num_rows > 0) {
 					  // output data of each row
 						while($row = $result->fetch_assoc()) {
-						echo "First Name: " . $row["FirstName"]. "<br>Last Name: " . $row["LastName"]. 
-						"<br>Grade Level: " . $row["Grade"]. "<br><hr>";
+							echo "Pod ID: " . 
+							$row["PodID"]. 
+							"<br>Grade Level of Pod: " . 
+							$row["Grade"]. 
+							"<br>Zip Code of Pod: " . 
+							$row["ZipCode"]. 
+							"<br><hr>";
+							$pid = $row['PodID'];
+							
+							echo "<br>";
+							$sql2 = "select FirstName, LastName, Child.Grade, Pod.ZipCode
+									 from People join Child
+									 on People.PeopleID = Child.ChildID
+									 join Pod_People
+									 on Pod_People.ChildID = Child.ChildID
+									 join Pod
+									 on Pod.PodID = Pod_People.PodID
+									 where Pod.PodID = $pid";
+
+							$result2 = $db->query($sql2);
+
+							if ($result2->num_rows > 0) {
+							  // output data of each row
+								while($row = $result2->fetch_assoc()) {
+									echo "First Name: " . $row["FirstName"]. "<br>Last Name: " . $row["LastName"]. 
+									"<br>Grade Level: " . $row["Grade"]. "<br><br>";
+								}
+							} 
+							else {
+								echo "No Participants Yet!";
+							}
+							echo "<br><hr>";
 					    }
 					} 
-						else {
-							echo "0 results";
-						}
+					else {
+						echo "0 results";
+					}
+					
 				}
 			
 			?>
+			
               </div>
             </div>
           </div>
+		  
+		  
+		  
           </div>
         
 
