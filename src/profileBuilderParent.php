@@ -72,7 +72,7 @@
             <div></div>
             <div id="logo" align="center">
                 <img height="72px" id="desktop" src="images/pods-logoW.png">
-                <img height="72px" id="mobile" src="images/pods-icon.png">
+                <!-- <img height="72px" id="mobile" src="images/pods-icon.png"> -->
             </div>
             <div class="menu">
                 <a href="javascript:void(0);" onclick="openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>
@@ -107,10 +107,11 @@
 				<input type="text" id="LastName" name="LastName" value="Doe"><br><br>
 				<label for="Birthday">Birthday:</label><br>
   				<input type="date" id="Birthday" name="Birthday"><br><br>
-				<label for="ZipCode">Zip Code:</label><br>
-                <input type="text" id="ZipCode" name="ZipCode" value="48312"><br><br>
+                <label for="ZipCode">Zip Code (48000 - 48970):</label><br>
+                <input type="number" id="ZipCode" name="ZipCode" min="48000" max="48972">
+                <!-- minlength="5" maxlength="5" pattern="[0-9]*" value="48312"> -->
+                <br><br>
 				<label for="NumKids">Number of Kids:</label><br>
-                <label for="NumKids">Number of Kids:</label><br>
                 <input type="text" id="NumKids" name="NumKids" value="0"><br><br>
 				<label for="CanHost">Can You Host? (Y or N):</label><br>
                 <input type="text" id="CanHost" name="CanHost" value="Y"><br><br>

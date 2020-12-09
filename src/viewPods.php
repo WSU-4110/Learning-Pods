@@ -29,17 +29,18 @@
     <body>
         <!-- LOGO -->
         <header>
-          <div></div>
-          <div>
-              <h1>Logo</h1>
-          </div>
-          <div class="menu">
-            <a href="javascript:void(0);" onclick="openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>
-            <div id="myAccount">
-                <a href="logout.php" alt="logout"> Logout </a>
+            <div></div>
+            <div id="logo" align="center">
+                <img height="72px" id="desktop" src="images/pods-logoW.png">
+                <!--<img height="72px" id="mobile" src="images/pods-icon.png">-->
             </div>
-            <a href="javascript:void(0);" onclick="openMenu()"  id="logout"><i class="material-icons md-48" style="font-size: 28px;">exit_to_app</i></a>
-        </div>
+            <div class="menu">
+                <a href="javascript:void(0);" onclick="openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>
+                <div id="myAccount">
+                    <a href="logout.php" alt="logout"> Logout </a>
+                </div>
+                <a href="javascript:void(0);" onclick="openMenu()"  id="logout"><i class="material-icons md-48" style="font-size: 28px;">exit_to_app</i></a>
+            </div>
 
         </header>
 

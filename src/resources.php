@@ -44,7 +44,7 @@
             <div></div>
             <div id="logo" align="center">
                 <img height="72px" id="desktop" src="images/pods-logoW.png">
-                <img height="72px" id="mobile" src="images/pods-icon.png">
+                <!-- <img height="72px" id="mobile" src="images/pods-icon.png"> -->
             </div>
             <div class="menu">
                 <a href="javascript:void(0);" onclick="openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>

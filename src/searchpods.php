@@ -32,7 +32,7 @@
           <div></div>
           <div id="logo" align="center">
                 <img height="72px" id="desktop" src="images/pods-logoW.png">
-                <img height="72px" id="mobile" src="images/pods-icon.png">
+                <!-- <img height="72px" id="mobile" src="images/pods-icon.png"> -->
           </div>
           <div class="menu">
             <a href="javascript:void(0);" onclick="openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>
@@ -56,10 +56,10 @@
 		
 		
     <!-- MAIN BODY -->
-        <div class="main">
+    <div class="main">
           <div class="card"> 
             <div class="container">
-              <div class="topnav">
+              <!--<div class="topnav">--> <!--What is this? not defined anywhere-->
                 <h2>Search Pods</h2>
 				
 				<form action="<?php $_PHP_SELF ?>" method="post">
@@ -68,42 +68,46 @@
                 <input type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="policy.html">Privacy policy</a></label><br><br>
 				<input type="submit" id="submit" class="button" value="Submit">
 			</form>
+			</div>
+        </div>
 			
-			<?php
-				include("config.php");
-	
-   
-   
-				if($_SERVER["REQUEST_METHOD"] == "POST") {
-					if(! $db ) {
-					   die('Could not connect: ' . mysql_error());
-					}
-					
-				    $zip = $_POST['SearchZip'];
-					
-					$sql = "select FirstName, LastName, Grade
-							 from People join Child
-							 on People.PeopleID = Child.ChildID
-							 where ZipCode = $zip";
-					
-					$result = $db->query($sql);
+        <?php
+            include("config.php");
 
-					if ($result->num_rows > 0) {
-					  // output data of each row
-						while($row = $result->fetch_assoc()) {
-						echo "First Name: " . $row["FirstName"]. "<br>Last Name: " . $row["LastName"]. 
-						"<br>Grade Level: " . $row["Grade"]. "<br><hr>";
-					    }
-					} 
-						else {
-							echo "0 results";
-						}
-				}
-			
+            if($_SERVER["REQUEST_METHOD"] == "POST") {
+                echo '<div class="card">';
+                echo '<div class="container">';
+            
+                if(! $db ) {
+                    die('Could not connect: ' . mysql_error());
+                }
+                
+                $zip = $_POST['SearchZip'];
+                
+                $sql = "select FirstName, LastName, Grade
+                            from People join Child
+                            on People.PeopleID = Child.ChildID
+                            where ZipCode = $zip";
+                
+                $result = $db->query($sql);
+
+                if ($result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+                    echo "First Name: " . $row["FirstName"]. "<br>Last Name: " . $row["LastName"]. 
+                    "<br>Grade Level: " . $row["Grade"]. "<br><hr>";
+                    }
+                } 
+                else {
+                    echo "0 results";
+                }
+                echo '</div>';
+                echo '</div>';
+            }
+
 			?>
-              </div>
-            </div>
-          </div>
+
+          <!--</div>--> <!--Not needed with "topnav"-->
           </div>
         
 
