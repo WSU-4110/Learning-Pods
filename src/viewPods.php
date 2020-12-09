@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Create Meeting</title>
+        <title>Search Meeting</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="learningPods.css">
@@ -59,7 +59,7 @@
           <div class="card"> 
             <div class="container">
               <div class="topnav">
-                <h2>Create Learning Pod Meeting!</h2>
+                <h2>Search Learning Pod Meetings</h2>
 				
 				<form action="<?php $_PHP_SELF ?>" method="post">
 				<label for="SearchZip">Enter Zip Code to Search:</label><br>
@@ -137,82 +137,7 @@
             </div>
           </div>
 		  
-		  <div class="card"> 
-            <div class="container">
-              <div class="topnav">
-				  <h2>Create A New Meeting</h2>
-						
-						<form action="<?php $_PHP_SELF ?>" method="post">
-						<input type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="policy.html">Privacy policy</a></label><br><br>
-						<input type="submit" id="submit" class="button" value="Create Meeting">
-						</form>
-						<?php
-						
-			
-		   
-		   
-						if($_SERVER["REQUEST_METHOD"] == "POST") {
-							if(! $db ) {
-							   die('Could not connect: ' . mysql_error());
-							}
-							
-							$zip2 = current(mysqli_query($db, "select ZipCode from People where UserID like '$userid'")->fetch_assoc());
-							$grade = current(mysqli_query($db, "select Grade from Child join People on People.PeopleID = Child.ChildID where UserID like '$userid'")->fetch_assoc());
-							$userid = $_SESSION['login_id'];
-							$parentid = current(mysqli_query($db, "select PeopleID from People where UserID like '$userid'")->fetch_assoc());
-							
-							$sql3 = "INSERT INTO People (ZipCode,Grade, HomeID, HostID) 
-				VALUES($zip2, '$bday', $zcode, $userid)";
-							
-							$result = $db->query($sql);
-
-							if ($result->num_rows > 0) {
-							  // output data of each row
-								while($row = $result->fetch_assoc()) {
-									echo "Pod ID: " . 
-									$row["PodID"]. 
-									"<br>Grade Level of Pod: " . 
-									$row["Grade"]. 
-									"<br>Zip Code of Pod: " . 
-									$row["ZipCode"]. 
-									"<br><hr>";
-									$pid = $row['PodID'];
-									
-									echo "<br>";
-									$sql2 = "select FirstName, LastName, Child.Grade, Pod.ZipCode
-											 from People join Child
-											 on People.PeopleID = Child.ChildID
-											 join Pod_People
-											 on Pod_People.ChildID = Child.ChildID
-											 join Pod
-											 on Pod.PodID = Pod_People.PodID
-											 where Pod.PodID = $pid";
-
-									$result2 = $db->query($sql2);
-
-									if ($result2->num_rows > 0) {
-									  // output data of each row
-										while($row = $result2->fetch_assoc()) {
-											echo "First Name: " . $row["FirstName"]. "<br>Last Name: " . $row["LastName"]. 
-											"<br>Grade Level: " . $row["Grade"]. "<br><br>";
-										}
-									} 
-									else {
-										echo "No Participants Yet!";
-									}
-									echo "<br><hr>";
-								}
-							} 
-							else {
-								echo "0 results";
-							}
-							
-						}
-					
-					?>
-					</div>
-				</div>
-			</div>
+		  
 		  
           </div>
         
