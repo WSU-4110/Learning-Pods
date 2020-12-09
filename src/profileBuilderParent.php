@@ -106,6 +106,7 @@
 				<label for="ZipCode">Zip Code:</label><br>
                 <input type="text" id="ZipCode" name="ZipCode" value="48312"><br><br>
 				<label for="NumKids">Number of Kids:</label><br>
+                <label for="NumKids">Number of Kids:</label><br>
                 <input type="text" id="NumKids" name="NumKids" value="0"><br><br>
 				<label for="CanHost">Can You Host? (Y or N):</label><br>
                 <input type="text" id="CanHost" name="CanHost" value="Y"><br><br>
