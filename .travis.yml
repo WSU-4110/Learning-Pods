@@ -1,7 +1,12 @@
 language: php
 php:
-  - 7.4 #will make less time in queue on travis
+  - 7.4
 services:
   - mysql
-  
-# before_script:
+branches:
+  only:
+    master
+before_install:
+  - travis_retry composer self-update
+  - composer install
+script: phpunit --exclude-group FITS --bootstrap vendor/autoload.php tests
