@@ -5,9 +5,9 @@ class TestFiles extends TestCase
 {  
     public function testNegativeTestcaseForAssertFileExists()  
     {  
-        $file = "../login.php";   
+        $file = "../src/signup.php";   
         $this->assertFileExists(  
-            $filename,  
+            $file,  
             "given filename doesn't exists"
         );  
     }  
