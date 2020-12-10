@@ -6,7 +6,11 @@ $robo = 'robot@learnigpods.com';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
+SELECT referees.name, referees.email, events.date, events.name FROM referees
+JOIN events_lut ON referees.id = events_lut.ref_id
+JOIN events ON events_lut.evt_id = events.id
+WHERE 'events.date'=CURRENT_DATE+ INTERVAL 7 DAY
+OR 'events.date'=CURRENT_DATE+ INTERVAL 1 DAY
 
 $developmentMode = true;
 $mailer = new PHPMailer($developmentMode);
