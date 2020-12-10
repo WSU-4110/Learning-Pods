@@ -67,6 +67,14 @@
 					<h2><a href = "createPod.php">Create Learning Pod</a></h2><br>
                     </div>
             </div>
+		<h3> About us </h3>
+			<p>Learning-Pods is a web application that allows parents and legal guardians 
+			to have the opportunity to continue to build their children’s education and
+			social skills while keeping them safe during a pandemic. It allows small
+			groups to form meetups within a community. Rather than put all the stress
+			on one user of the group there will be a rotation of hosts within the group 
+			for the duration of the group’s length.</p>
+		</div>
         </div>
 
         <script>
