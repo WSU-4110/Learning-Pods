@@ -275,7 +275,17 @@ label {
 .table tbody tr:last-of-type{
   border-bottom: 2px solid #2f2294;
 }
-
+.content{
+	width:100%;
+	height:auto;
+	margin-top: 150px;
+	background-color: #ffec9e;
+	font-size: 15px;
+	font-family: Arial;
+	color:#333;
+	line-height: 30px;
+	text-align: center;
+}
 
 /* APPLY ONCE DESKTOP IS ADDED */
 
