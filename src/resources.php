@@ -67,21 +67,36 @@
         </div>
 
         <!-- MAIN BODY -->
-        <div class="main">
-            <div class="card">
-                <div class="container">
-                    <h2>Resources</h2>
-                    <p>Here are a list of resources.</p>
-                    <h3>College</h3>
-                    
-                    <li><a href="https://ncte.org/resources/">www.ncte.org </a</li>
-                    <li><a href="https://www.coursera.org/">www.coursera.org </a</li>
-                    <li><a href="https://www.khanacademy.org/">www.kahnacademy.com </a</li>
-                    <li><a href=" https://www.edutopia.org/ ">www.edutopia.org </a</li>
-
-                </div>
-            </div>
-        </div>
+ <table class="table">
+      <thead>
+        <tr>
+          <th>Resource</th>
+          <th>Link</th>
+       
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><a href="https://ncte.org/resources/">www.ncte.org </a</td>
+         
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><a href="https://www.coursera.org/">www.coursera.org </</td>
+          
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><a href="https://www.khanacademy.org/">www.kahnacademy.com </a</td>
+          
+        </tr><tr>
+          <td>4</td>
+          <td><a href="https://www.edutopia.org/">www.edutopia.org </a</td>
+                
+      </tbody>   
+		  
+    </table>
 
         <script>
             function openMenu() {
