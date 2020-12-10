@@ -6,5 +6,4 @@ services:
 branches:
   only:
     master
-script: 
-  - vendor/bin/phpunit
+
