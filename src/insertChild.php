@@ -29,18 +29,17 @@
     <body>
         <!-- LOGO -->
         <header>
-            <div></div>
-            <div id="logo" align="center">
-                <img height="72px" id="desktop" src="images/pods-logoW.png">
-                <!--<img height="72px" id="mobile" src="images/pods-icon.png">-->
+          <div></div>
+          <div>
+              <h1>Logo</h1>
+          </div>
+          <div class="menu">
+            <a href="javascript:void(0);" onclick="openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>
+            <div id="myAccount">
+                <a href="logout.php" alt="logout"> Logout </a>
             </div>
-            <div class="menu">
-                <a href="javascript:void(0);" onclick="openMenu()"  id="cacncel" style="display:none;"><i class="material-icons md-48" style="font-size: 28px;">close</i></a>
-                <div id="myAccount">
-                    <a href="logout.php" alt="logout"> Logout </a>
-                </div>
-                <a href="javascript:void(0);" onclick="openMenu()"  id="logout"><i class="material-icons md-48" style="font-size: 28px;">exit_to_app</i></a>
-            </div>
+            <a href="javascript:void(0);" onclick="openMenu()"  id="logout"><i class="material-icons md-48" style="font-size: 28px;">exit_to_app</i></a>
+        </div>
 
         </header>
 
@@ -60,12 +59,11 @@
           <div class="card"> 
             <div class="container">
               <div class="topnav">
-                <h2>Search Learning Pod Meetings</h2>
+                <h2>Choose a Child</h2>
 				
 				<form action="<?php $_PHP_SELF ?>" method="post">
-				<label for="SearchZip">Enter Zip Code to Search:</label><br>
-				<input type="text" id="SearchZip" name="SearchZip" value="00000"><br><br>
-                <input type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="policy.html">Privacy policy</a></label><br><br>
+				<label for="cname">Enter Name of Child Attending the Meeting:</label><br>
+				<input type="text" id="cname" name="cname" value="john"><br><br>
 				<input type="submit" id="submit" class="button" value="Create Meeting">
 				</form>
 			
@@ -79,65 +77,29 @@
 					   die('Could not connect: ' . mysql_error());
 					}
 					
-				    $zip = $_POST['SearchZip'];
-					$userid = $_SESSION['login_id'];
+				    $userid = $_SESSION['login_id'];
+					if(isset($_GET['pid'])) {
+                        $pid = $_GET['pid'];
+                        ///echo "The pid is set to: ".$pid;
+                    }
+                    else {
+                        echo "pid is not set properly";
+                    }
+				//	$pid = $_SESSION["gpid"];
+					echo "The current PID is: ".$pid;
+					$fname = $_POST['cname'];
 					$parentid = current(mysqli_query($db, "select PeopleID from People where UserID like '$userid'")->fetch_assoc());
+					$childid = current(mysqli_query($db, "select ChildID from Child join People on Child.ChildID = People.PeopleID where ParentID like $parentid and FirstName like '$fname'")->fetch_assoc());
+					//$podid = current(mysqli_query($db, "select PodID from Pod where HostID = $parentid")->fetch_assoc());
 					
-					$sql = "select PodID, Grade, ZipCode
-							from Pod
-							 where Pod.ZipCode = $zip";
-					
-					$result = $db->query($sql);
-
-					if ($result->num_rows > 0) {
-					  // output data of each row
-						while($row = $result->fetch_assoc()) {
-							echo "Pod ID: " . 
-							$row["PodID"]. 
-							"<br>Grade Level of Pod: " . 
-							$row["Grade"]. 
-							"<br>Zip Code of Pod: " . 
-							$row["ZipCode"]. 
-							"<br><hr>";
-							$pid = $row['PodID'];
-							
-							
-							echo "<br>";
-							$sql2 = "select FirstName, LastName, Child.Grade, Pod.ZipCode
-									 from People join Child
-									 on People.PeopleID = Child.ChildID
-									 join Pod_People
-									 on Pod_People.ChildID = Child.ChildID
-									 join Pod
-									 on Pod.PodID = Pod_People.PodID
-									 where Pod.PodID = $pid";
-
-							$result2 = $db->query($sql2);
-
-							if ($result2->num_rows > 0) {
-							  // output data of each row
-								while($row = $result2->fetch_assoc()) {
-									echo "First Name: " . $row["FirstName"]. "<br>Last Name: " . $row["LastName"]. 
-									"<br>Grade Level: " . $row["Grade"]. "<br><br>";
-								}
-								if ($result->num_rows <= 10) {
-								    $_SESSION["gpid"] = $pid;
-									echo "<a href='insertChild.php?pid=".$pid."'>Click here to add your child to the pod</a><br>";
-								}
-								else {
-									echo "This Pod is already Full!<br>";
-								}
-							} 
-							else {
-							    $_SESSION["gpid"] = $pid;
-								echo "No Participants Yet!";
-								echo "<a href='insertChild.php?pid=".$pid."'>Click here to add your child to the pod</a><br>";
-							}
-							echo "<br><hr>";
-					    }
-					} 
-					else {
-						echo "0 results";
+					$sql1 = "INSERT INTO Pod_People (ChildID, PodID) 
+								VALUES($childid, $pid)";
+						
+					if ($db->query($sql1) === TRUE) {
+						//echo "New record created successfully";
+						//header('Location: viewPods.php');
+					} else {
+						echo "Error: " . $sql1 . "<br>" . $db->error;
 					}
 					
 				}

@@ -1,7 +1,29 @@
 language: php
 php:
-  - 7.4 #will make less time in queue on travis
+  - 7.4
 services:
   - mysql
-  
-# before_script:
+branches:
+  only:
+    master
+
+script: 
+  - php test/phpunittestValidcalendar.php
+  - php test/phpunittestValidconfig.php
+  - php test/phpunittestValidcreatePod.php
+  - php test/phpunittestValidcss.php
+  - php test/phpunittestValidDisplay.php
+  - php test/phpunittestValidindex.php
+  - php test/phpunittestValidinsertChild.php
+  - php test/phpunittestValidLogin.php
+  - php test/phpunittestValidlogout.php
+  - php test/phpunittestValidmessages.php
+  - php test/phpunittestValidpolicy.php
+  - php test/phpunittestValidprofileC.php
+  - php test/phpunittestValidprofileN.php
+  - php test/phpunittestValidprofileP.php
+  - php test/phpunittestValidresources.php
+  - php test/phpunittestValidsearch.php
+  - php test/phpunittestValidsession.php
+  - php test/phpunittestValidsignup.php
+  - php test/phpunittestValidview.php

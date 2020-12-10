@@ -113,7 +113,11 @@
 				<label for="Grade">Grade Level(1-12):</label><br>
                 <input type="text" id="Grade" name="Grade" value="1"><br><br> -->
                 <label for="ZipCode">Zip Code (48000 - 48970):</label><br>
+<<<<<<< HEAD
                 <input type="number" id="ZipCode" name="ZipCode" min="48000" max="48997" placeholder="48000" required>
+=======
+                <input type="number" id="ZipCode" name="ZipCode" min="48000" max="48972" placeholder="48###" required>
+>>>>>>> master
                 <!-- minlength="5" maxlength="5" pattern="[0-9]*" value="48312"> -->
                 </select><br>
 				<label for="Grade">Grade Level(1-12):</label><br>
@@ -137,6 +141,7 @@
 			</form>
 			</div>
             </div>
+<<<<<<< HEAD
 
 			<?php
 			if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -154,6 +159,54 @@
                 ?>
 			
                 
+=======
+            <?php 
+
+
+                if($_SERVER["REQUEST_METHOD"] == "POST") {
+                    echo '<div class="card">';
+                    echo '<div class="container">';
+                    
+                    $zip = $_POST['ZipCode'];
+                    $grd = $_POST['Grade'];
+                    $location = $zip;
+                    
+                    $checkZip = "SELECT SchoolName FROM School WHERE SchoolZipCode =  $zip";
+                    $resultSetSchool = $db->query($checkZip);
+                    if ($resultSetSchool->num_rows < 1){
+                        $sqlCity = "SELECT DISTINCT City FROM ZipCode WHERE ZipCodeID LIKE $zip";
+
+                        $result = mysqli_query($db, $sqlCity);
+                        $resltt = mysqli_fetch_assoc($result);
+                        $selCity = $resltt['City'];
+                        $location = $selCity;
+                        
+                        $sqlCitySearch = "SELECT SchoolName, MinGrade, MaxGrade FROM School WHERE SchoolCity LIKE '$selCity' AND MaxGrade >= $grd AND MinGrade <= $grd";
+                        $resultSetSchool = $db->query($sqlCitySearch);
+                        
+                    }
+                    else {
+                        $sqlZipSearch = "SELECT SchoolName, MinGrade, MaxGrade FROM School WHERE SchoolZipCode =  $zip AND MaxGrade >= $grd AND MinGrade <= $grd";
+                        $resultSetSchool = $db->query($sqlZipSearch);
+
+                    }
+                    echo '<h3>Schools Found in '. ucwords(strtolower($location)) .'</h3><hr>';
+                    echo '<label for="school" id="school">School Name</label><br>';
+                    echo '<select name="school">';
+                    
+                    if ($resultSetSchool->num_rows > 0){
+                        echo 'Schools found <br>';
+                    while ($row = $resultSetSchool->fetch_assoc()){
+                        echo "<option value=' ". $row['SchoolName']. "'>" . $row['SchoolName'] . " </option>";
+                        }
+                    }
+                    else echo "No schools";
+                    echo '</div>';
+                    echo '</div>';
+                }
+
+            ?>
+>>>>>>> master
 
         </div>
 
