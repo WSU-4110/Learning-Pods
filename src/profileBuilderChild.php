@@ -36,10 +36,10 @@
 		
 		$userid = $_SESSION['login_id'];
 		$parentid = current(mysqli_query($db, "select PeopleID from People where UserID = $userid")->fetch_assoc());
-
+		$childid = current(mysqli_query($db, "select PeopleID from People where FirstName like '$fname' and LastName like '$lname'")->fetch_assoc());
 		
-		$sql2 = "INSERT INTO Child (Grade,ParentID) 
-				VALUES('$grade', $parentid)";
+		$sql2 = "INSERT INTO Child (ChildID,Grade,ParentID) 
+				VALUES($childid,'$grade', $parentid)";
 		
 		if ($db->query($sql2) === TRUE) {
 			//echo "New record created successfully";
@@ -113,7 +113,7 @@
 				<label for="Grade">Grade Level(1-12):</label><br>
                 <input type="text" id="Grade" name="Grade" value="1"><br><br> -->
                 <label for="ZipCode">Zip Code (48000 - 48970):</label><br>
-                <input type="number" id="ZipCode" name="ZipCode" min="48000" max="48972" placeholder="48###" required>
+                <input type="number" id="ZipCode" name="ZipCode" min="48000" max="48997" placeholder="48000" required>
                 <!-- minlength="5" maxlength="5" pattern="[0-9]*" value="48312"> -->
                 </select><br>
 				<label for="Grade">Grade Level(1-12):</label><br>
@@ -135,37 +135,25 @@
                 <input type="radio" name="Terms" required value="1"><label for="Terms"> I agree to <a href="policy.html">Privacy policy</a></label><br><br>
 				<input type="submit" id="submit" name="submit" class="button" value="Submit">
 			</form>
-                </div>
+			</div>
             </div>
-            <?php 
 
-
-                if($_SERVER["REQUEST_METHOD"] == "POST") {
-                    echo '<div class="card">';
-                    echo '<div class="container">';
+			<?php
+			if($_SERVER["REQUEST_METHOD"] == "POST") {
+		        echo '<div class="card">';
+                echo '<div class="container">';
+                echo '<h2>Success</h2><br><hr><br>';
+                echo '<h3>Add schools to find better match? <a href="addSchool.php">Yes</a></h3> ';
+                
+                // $zip = $_POST['ZipCode'];
+                
                     
-                    $zip = $_POST['ZipCode'];
-                    $grd = $_POST['Grade'];
-                    
-                    
-                    $sql2 = "SELECT SchoolName, MinGrade, MaxGrade FROM School WHERE SchoolZipCode =  $zip AND MaxGrade >= $grd AND MinGrade <= $grd";
-                    $resultSetSchool = $db->query($sql2);
-                    echo '<h3>Schools Found in '. $zip .'</h3><hr>';
-                    echo '<label for="school" id="school">School Name</label><br>';
-                    echo '<select name="school">';
-                    
-                    if ($resultSetSchool->num_rows > 0){
-                        echo 'Schools found <br>';
-                    while ($row = $resultSetSchool->fetch_assoc()){
-                        echo "<option value=' ". $row['SchoolName']. "'>" . $row['SchoolName'] . " </option>";
+                echo '</div>';
+                echo '</div>';
                     }
-                    }
-                    else echo "No schools";
-                    echo '</div>';
-                    echo '</div>';
-                }
-
-            ?>
+                ?>
+			
+                
 
         </div>
 

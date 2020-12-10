@@ -46,12 +46,12 @@
 
         <!-- NAV BAR -->
         <div class="navbar">
-                <li><a href="index.php" class="active" alt="home"><i class="material-icons md-48">house</i></a></li>
+                <li><a href="index.php" alt="home"><i class="material-icons md-48">house</i></a></li>
                 <li><a href="messages.php" alt="messages"><i class="material-icons md-48">mail</i></a></li>
                 <li><a href="calendar.php" alt="calendar"><i class="material-icons md-48">insert_invitation</i></a></li>
                 <li><a href="profileBuilderNav.php" alt="profile"><i class="material-icons md-48">face</i></a></li>
                 <li><a href="resources.php" alt="resources"><i class="material-icons md-48">book</i></a></li>
-                <li><a href="searchpods.php" alt="search group"><i class="material-icons md-48">search</i> </a></li>
+                <li><a href="searchpods.php" class="active" alt="search group"><i class="material-icons md-48">search</i> </a></li>
         </div>
 		
 		
@@ -60,11 +60,11 @@
           <div class="card"> 
             <div class="container">
               <!--<div class="topnav">--> <!--What is this? not defined anywhere-->
-                <h2>Search Pods</h2>
+                <h2>Search Pods</h2><br><hr><br>
 				
 				<form action="<?php $_PHP_SELF ?>" method="post">
 				<label for="SearchZip">Enter Zip Code to Search:</label><br>
-				<input type="text" id="SearchZip" name="SearchZip" value="00000"><br><br>
+                <input type="number" id="SearchZip" name="SearchZip" min="48000" max="49970" placeholder="48000" required><br><br>
                 <input type="radio" name="Terms" required value="1"><label for="Terms"> I aggree to <a href="policy.html">Privacy policy</a></label><br><br>
 				<input type="submit" id="submit" class="button" value="Submit">
 			</form>
