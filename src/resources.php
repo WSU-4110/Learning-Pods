@@ -79,20 +79,24 @@
         <tr>
           <td>1</td>
           <td><a href="https://ncte.org/resources/">www.ncte.org </a</td>
+		  <td>A site dedicated to the teaching and learning of English </td>
          
         </tr>
         <tr>
           <td>2</td>
           <td><a href="https://www.coursera.org/">www.coursera.org </</td>
+		  <td>An online college course provider </td>
           
         </tr>
         <tr>
           <td>3</td>
           <td><a href="https://www.khanacademy.org/">www.kahnacademy.com </a</td>
+		  <td>Provides online tutorials for various subjects </td>
           
         </tr><tr>
           <td>4</td>
           <td><a href="https://www.edutopia.org/">www.edutopia.org </a</td>
+		  <td>Provides learning based strategies for K-12 based education</td>
                 
       </tbody>   
 		  
