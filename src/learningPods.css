@@ -205,6 +205,21 @@ input {
   padding: 6px;
 }
 
+/* NEW */
+#select-id {
+  padding: 6px;
+  box-shadow: 0 10px 25px #000000;
+  color: #ffffff;
+  border-radius: 4px;
+  
+  border-color: #71EAF580;
+
+  border-bottom: #082C44;
+  background-color: #ffcf9b;
+  font-weight: bold;
+}
+
+
 label { 
   font-size: 14px;
   padding-left: 5px;
